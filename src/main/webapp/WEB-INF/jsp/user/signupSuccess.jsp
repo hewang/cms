@@ -28,6 +28,9 @@
         <div class="login-single-panel-header">
             <h3>注册成功！已向<span style="color: red">${userForm.username}</span>发送一份确认邮件，请登录邮箱，激活验证码完成注册！</h3>
         </div>
+        <div>
+            <a href="${ctx}/">用户登录</a>
+        </div>
     </div>
 </div>
 <div class="text-center bottom">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by qatang on 14-6-12.
@@ -18,7 +19,32 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    public User get(Long id) {
+        return userDao.findOne(id);
+    }
+
+    @Override
+    public List<User> getList() {
+        return userDao.findAll();
+    }
+
+    @Override
     public User save(User user) {
         return userDao.save(user);
+    }
+
+    @Override
+    public User update(User user) {
+        return userDao.save(user);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userDao.delete(id);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 }

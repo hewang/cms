@@ -15,7 +15,7 @@
     <script src="${ctx}/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function() {
-            var captchaUrl = "/kaptcha?";
+            var captchaUrl = "${ctx}/kaptcha?";
             $('#captchaImg').prop('src', captchaUrl + (new Date()).getTime());
             $('#captchaImg').click(function () {
                 $(this).prop('src', captchaUrl + (new Date()).getTime());
@@ -39,7 +39,7 @@
         </div>
         <form id="theform" class="form-signup-heading" action="${ctx}/register" method="post">
             <div class="login-single-panel-header">
-                <h5 style="color:red">${userForm.errorMessage}</h5>
+                <h5 style="color:red">${errorMessage}</h5>
             </div>
             <br/>
             <input type="text" id="username" name="username" autofocus="" required="" placeholder="用户邮箱" value="${userForm.username}" class="form-control">
@@ -59,6 +59,7 @@
                 </div>
             </div>
             <input class="btn btn-primary btn-lg" id="sub" name="sub" value="立即注册" type="submit" />
+            <a href="${ctx}/" target="_blank">用户登录</a>
         </form>
     </div>
 </div>
