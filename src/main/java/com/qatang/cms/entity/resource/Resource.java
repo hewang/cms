@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 @Table(name = "c_resource")
 @DynamicInsert
 @DynamicUpdate
-public class Resource {
+public class Resource implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;

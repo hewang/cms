@@ -37,7 +37,9 @@
             <mvc:exclude-mapping path="/signin"/>
             <mvc:exclude-mapping path="/signup"/>
             <mvc:exclude-mapping path="/user/password/forget"/>
-            <bean class="com.qatang.cms.interceptor.ResourceSessionInterceptor" />
+            <bean class="com.qatang.cms.interceptor.ResourceSessionInterceptor" >
+                <property name="cacheManager" ref="cacheManager"/>
+            </bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

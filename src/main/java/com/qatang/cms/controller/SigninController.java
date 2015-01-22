@@ -17,6 +17,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by qatang on 14-6-5.
@@ -41,6 +44,8 @@ public class SigninController extends BaseController {
     private UserService userService;
     @Autowired
     private ResourceService resourceService;
+    @Autowired
+    CacheManager cacheManager;
 
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
@@ -104,7 +109,8 @@ public class SigninController extends BaseController {
         for (Long key : resourceListMap.keySet()) {
             resourceList.add(resourceListMap.get(key));
         }
-        request.getSession().setAttribute(CommonConstants.RESOURCES_SESSION_KEY, resourceList);
+        Cache<Long, List<Resource>> rememberMeSessionCache = cacheManager.getCache("rememberMeSessionCache");
+        rememberMeSessionCache.put(user.getId(), resourceList);
         return "redirect:/dashboard";
     }
 }
